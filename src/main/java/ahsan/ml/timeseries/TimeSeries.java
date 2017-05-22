@@ -43,7 +43,6 @@ public class TimeSeries {
 	 *
 	 */
 	private void computeWindowStats(final String timeBucket) {
-		// Partitioning series using time bucket
 		for (final Entry<Instant, Double> point : getData().entrySet()) {
 			final int timeWindow = TimeSeriesUtilities.getPointTimeWindow(timeBucket, point.getKey());
 			getStats().computeIfAbsent(timeWindow, $ -> new DescriptiveStatistics()).addValue(point.getValue());

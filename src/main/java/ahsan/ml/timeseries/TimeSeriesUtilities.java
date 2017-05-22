@@ -98,16 +98,21 @@ public class TimeSeriesUtilities {
 		}
 
 		final XYChart chart = QuickChart.getChart("Time Series", "time", "y", "y(time)", xData, yData);
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final SwingWrapper window = new SwingWrapper(chart);
 		window.displayChart();
 	}
 
+	/**
+	 * Generating a sine curve as series for testing. Method applicable to any
+	 * time series
+	 *
+	 * @return
+	 */
 	public static Map<Instant, Double> getSyntheticTimeSeries() {
 		final Map<Instant, Double> timeseries = new TreeMap<>();
-		// 2 * PI * 5
 		for (long degree = 0; degree <= 1000000; degree++) {
 			final double y = Math.sin(degree * Math.PI / 180);
-			// final double y = new Random().nextDouble();
 			timeseries.put(Instant.ofEpochSecond(degree), y);
 		}
 		return timeseries;

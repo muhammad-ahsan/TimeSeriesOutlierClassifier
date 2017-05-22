@@ -28,16 +28,17 @@ public class OutlierClassifierImpl implements OutlierClassifier {
 		final DescriptiveStatistics windowStats = stats.get(window);
 		Preconditions.checkArgument(windowStats != null);
 
-		// Q1 – 3.5×IQR >= Outlier >=Q3 + 3.5×IQR [Major Outlier]
+		// Q1 – FACTOR × IQR >= Outlier >=Q3 + FACTOR × IQR
 		final double q1 = windowStats.getPercentile(30);
 		final double q3 = windowStats.getPercentile(60);
 		Preconditions.checkArgument(q3 >= q1);
 		final double iqr = q3 - q1;
 
-		if (value < (q1 - 1.5 * iqr)) {
+		double factor = 1.5;
+		if (value < (q1 - factor * iqr)) {
 			return true;
 		}
-		if (value > (q3 + 1.5 * iqr)) {
+		if (value > (q3 + factor * iqr)) {
 			return true;
 		}
 		return false;
