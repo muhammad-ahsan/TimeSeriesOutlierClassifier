@@ -9,7 +9,8 @@ public interface OutlierClassifier {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean isOutlier(final Instant instant, final double value, final TimeSeries timeseries);
+	public boolean isOutlier(final Instant instant, final double value, final TimeSeries timeseries,
+			final OutlierStrategy strategy);
 
 	public Map<OutlierStrategy, Boolean> getOutlierMap(final Instant instant, final double value,
 			final TimeSeries timeseries, final OutlierStrategy strategy);
