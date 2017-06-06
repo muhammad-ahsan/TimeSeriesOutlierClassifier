@@ -15,9 +15,10 @@ public class OutlierClassifierImpl implements OutlierClassifier {
 
 	@Override
 	public Map<OutlierStrategy, Boolean> getOutlierMap(final Instant instant, final double value,
-			final TimeSeries timeseries, final OutlierStrategy strategy) {
+			final TimeSeries timeseries) {
 		final Map<OutlierStrategy, Boolean> result = new HashMap<>();
-		result.put(strategy, isOutlier(instant, value, timeseries, strategy));
+		result.put(OutlierStrategy.QUARTILE_BASED,
+				isOutlier(instant, value, timeseries, OutlierStrategy.QUARTILE_BASED));
 		return result;
 	}
 

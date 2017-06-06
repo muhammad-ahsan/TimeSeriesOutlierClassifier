@@ -13,5 +13,5 @@ public interface OutlierClassifier {
 			final OutlierStrategy strategy);
 
 	public Map<OutlierStrategy, Boolean> getOutlierMap(final Instant instant, final double value,
-			final TimeSeries timeseries, final OutlierStrategy strategy);
+			final TimeSeries timeseries);
 }
